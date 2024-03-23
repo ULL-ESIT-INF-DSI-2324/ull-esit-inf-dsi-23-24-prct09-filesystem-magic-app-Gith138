@@ -1,1 +1,2 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/T5K9tzcv)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Gith138_ull-esit-inf-dsi-23-24-prct09-filesystem-magic-app-Gith138&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Gith138_ull-esit-inf-dsi-23-24-prct09-filesystem-magic-app-Gith138)
