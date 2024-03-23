@@ -1,0 +1,11 @@
+{
+    "entryPoints": [
+      "./src/index.ts",
+      "./src/cliente.ts",
+      "./src/database.ts",
+      "./src/mueble.ts",
+      "./src/proveedor.ts",
+      "./src/stock.ts"
+    ],
+    "out": "./docs"
+  }
