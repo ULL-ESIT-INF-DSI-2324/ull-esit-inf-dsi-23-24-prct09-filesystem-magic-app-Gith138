@@ -1,0 +1,14 @@
+{
+  "id": 2000,
+  "nombre": "Bad Gyal",
+  "coste_mana": 4456,
+  "color": "Multicolor",
+  "tipo": "Criatura",
+  "rareza": "Mitica",
+  "texto_reglas": "Chulo",
+  "valor_mercado": 15,
+  "fuerza_resistencia": [
+    5,
+    9
+  ]
+}

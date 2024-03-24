@@ -1,0 +1,14 @@
+{
+  "id": 21,
+  "nombre": "TwentyOne Pilots",
+  "coste_mana": 5223,
+  "color": "Rojo",
+  "tipo": "Criatura",
+  "rareza": "Mitica",
+  "texto_reglas": "Stressed Out",
+  "valor_mercado": 15,
+  "fuerza_resistencia": [
+    5,
+    9
+  ]
+}

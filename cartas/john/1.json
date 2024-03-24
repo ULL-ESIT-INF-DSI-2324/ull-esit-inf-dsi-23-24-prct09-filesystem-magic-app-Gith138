@@ -1,0 +1,14 @@
+{
+  "id": 1,
+  "nombre": "Carta 1",
+  "coste_mana": 2,
+  "color": "Blue",
+  "tipo": "Creature",
+  "rareza": "Common",
+  "texto_reglas": "Texto de reglas",
+  "valor_mercado": 10,
+  "fuerza_resistencia": [
+    2,
+    3
+  ]
+}
