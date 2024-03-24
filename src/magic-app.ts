@@ -52,18 +52,7 @@ export class Cartas {
    * @param fuerza_resistencia - La fuerza y resistencia de la carta (solo para cartas de tipo Criatura).
    * @param marcas_lealtad - Las marcas de lealtad de la carta (solo para cartas de tipo Planeswalker).
    */
-  constructor(
-    public id: number,
-    public nombre: string,
-    public coste_mana: number,
-    public color: Color,
-    public tipo: Tipo,
-    public rareza: Rareza,
-    public texto_reglas: string,
-    public valor_mercado: number,
-    public fuerza_resistencia?: [number, number],
-    public marcas_lealtad?: number
-  ) {
+  constructor( public id: number, public nombre: string, public coste_mana: number, public color: Color, public tipo: Tipo, public rareza: Rareza, public texto_reglas: string, public valor_mercado: number, public fuerza_resistencia?: [number, number], public marcas_lealtad?: number) {
     this.id = id;
     this.nombre = nombre;
     this.coste_mana = coste_mana;
