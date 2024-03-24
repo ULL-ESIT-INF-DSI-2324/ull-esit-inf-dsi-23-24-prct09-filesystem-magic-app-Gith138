@@ -19,15 +19,15 @@ export class ColeccionCartas {
 		resultado += `Linea de tipo: ${carta_json.tipo}\n`;
 		resultado += `Rareza: ${carta_json.rareza}\n`;
 		resultado += `Texto de reglas: ${carta_json.texto_reglas}\n`;
-		if (carta_json.tipo === 'Criatura') {
+		if (carta_json.tipo === 'Criatura') { // Mostrar la fuerza y resistencia de la criatura
 			resultado += `Fuerza/Resistencia: ${carta_json.fuerza_resistencia}\n`;
 		}
-		if (carta_json.tipo === 'Planeswalker') {
+		if (carta_json.tipo === 'Planeswalker') { // Mostrar las marcas de lealtad del planeswalker
 			resultado += `Marcas de lealtad: ${carta_json.marcas_lealtad}\n`;
 		}
 		resultado += `Valor de mercado: ${carta_json.valor_mercado}\n`;
 	
-		switch (carta_json.color) {
+		switch (carta_json.color) { // Mostrar el color de la carta
 			case 'Blanco':
 				console.log(chalk.white(resultado));
 				break;
@@ -61,16 +61,16 @@ export class ColeccionCartas {
 	 * @param usuario - El nombre del usuario.
 	 */
 	public AyadirCarta(carta: Cartas, usuario: string): void {
-		const DirectorioUsuario = `./cartas/${usuario}`;
-		const RutaCarta = `${DirectorioUsuario}/${carta.id}.json`;
+		const directorio_cartas = `./cartas/${usuario}`;
+		const RutaCarta = `${directorio_cartas}/${carta.id}.json`;
 			
-		if (!fs.existsSync(DirectorioUsuario)) {
-			fs.mkdirSync(DirectorioUsuario, { recursive: true });
+		if (!fs.existsSync(directorio_cartas)) { // Verificar si no existe el directorio
+			fs.mkdirSync(directorio_cartas, { recursive: true }); // Crea el directorio
 		}
 
-		if (fs.existsSync(RutaCarta)) {
+		if (fs.existsSync(RutaCarta)) { // Verificar si la carta existe
 			console.log(chalk.red(`La carta ya existe en la colección de ${usuario}!`));
-		} else {
+		} else { //	Añadir la carta
 			fs.writeFileSync(RutaCarta, JSON.stringify(carta, null, 2));
 			console.log(chalk.green(`Nueva carta añadida a la colección de ${usuario}!`));
 		}
@@ -82,12 +82,12 @@ export class ColeccionCartas {
 	 * @param usuario - El nombre del usuario.
 	 */
 	public ActualizarCarta(carta: Cartas, usuario: string): void {
-		const DirectorioUsuario = `./cartas/${usuario}`;
-		const RutaCarta = `${DirectorioUsuario}/${carta.id}.json`;
+		const directorio_cartas = `./cartas/${usuario}`;
+		const RutaCarta = `${directorio_cartas}/${carta.id}.json`;
 
-		if (!fs.existsSync(RutaCarta)) {
+		if (!fs.existsSync(RutaCarta)) { // Verificar si la carta existe
 			console.log(chalk.red(`La carta no existe en la colección de ${usuario}!`));
-		} else {
+		} else { //	Actualizar la carta
 			fs.writeFileSync(RutaCarta, JSON.stringify(carta, null, 2));
 			console.log(chalk.green(`Carta actualizada en la colección de ${usuario}!`));
 		}
@@ -99,13 +99,13 @@ export class ColeccionCartas {
 	 * @param usuario - El nombre del usuario.
 	 */
 	public EliminarCarta(id: number, usuario: string): void {
-		const DirectorioUsuario = `./cartas/${usuario}`;
-		const RutaCarta = `${DirectorioUsuario}/${id}.json`;
+		const directorio_cartas = `./cartas/${usuario}`;
+		const RutaCarta = `${directorio_cartas}/${id}.json`;
 
-		if (!fs.existsSync(RutaCarta)) {
+		if (!fs.existsSync(RutaCarta)) { // Verificar si la carta existe
 			console.log(chalk.red(`La carta no existe en la colección de ${usuario}!`));
 		} else {
-			fs.unlinkSync(RutaCarta);
+			fs.unlinkSync(RutaCarta); // Eliminar la carta
 			console.log(chalk.green(`Carta eliminada de la colección de ${usuario}!`));
 		}
 	}
@@ -115,15 +115,15 @@ export class ColeccionCartas {
 	 * @param usuario - El nombre del usuario.
 	 */
 	public ListarCartas(usuario: string): void {
-		const DirectorioUsuario = `./cartas/${usuario}`;
+		const directorio_cartas = `./cartas/${usuario}`;
 
-		if (!fs.existsSync(DirectorioUsuario)) {
+		if (!fs.existsSync(directorio_cartas)) { // Verificar si el usuario tiene una colección de cartas
 			console.log(chalk.red(`${usuario} no tiene una colección de cartas`));
 		} else {
-			const archivos = fs.readdirSync(DirectorioUsuario);
-			archivos.forEach((archivo) => {
-				const carta = fs.readFileSync(`${DirectorioUsuario}/${archivo}`).toString();
-				this.MostrarCartas(carta);
+			const archivos = fs.readdirSync(directorio_cartas); // Leer los archivos de la colección
+			archivos.forEach((archivo) => { //	Iterar sobre los archivos
+				const carta = fs.readFileSync(`${directorio_cartas}/${archivo}`).toString(); // Leer el archivo
+				this.MostrarCartas(carta); // Mostrar los detalles de la carta
 			});
 		}
 	}
@@ -134,13 +134,13 @@ export class ColeccionCartas {
 	 * @param usuario - El nombre del usuario.
 	 */
 	public MostrarCarta(id: number, usuario: string): void {
-		const DirectorioUsuario = `./cartas/${usuario}`;
-		const RutaCarta = `${DirectorioUsuario}/${id}.json`;
+		const directorio_cartas = `./cartas/${usuario}`;
+		const RutaCarta = `${directorio_cartas}/${id}.json`;
 
-		if (!fs.existsSync(RutaCarta)) {
+		if (!fs.existsSync(RutaCarta)) { // Verificar si la carta existe
 			console.log(chalk.red(`Carta no encontrada en la colección de ${usuario}`));
 		} else {
-			const carta = fs.readFileSync(RutaCarta).toString();
+			const carta = fs.readFileSync(RutaCarta).toString(); // Leer el archivo
 			this.MostrarCartas(carta);
 		}
 	}

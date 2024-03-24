@@ -1,0 +1,10 @@
+{
+  "id": 304,
+  "nombre": "Criatura",
+  "coste_mana": 5,
+  "color": "Azul",
+  "tipo": "Criatura",
+  "rareza": "Común",
+  "texto_reglas": "Hace cosas Infrecuentees el común",
+  "valor_mercado": 100
+}
