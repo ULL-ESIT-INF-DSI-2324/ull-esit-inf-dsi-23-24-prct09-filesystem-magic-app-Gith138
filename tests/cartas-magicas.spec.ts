@@ -1,7 +1,7 @@
-import "mocha";
+import 'mocha';
 import { expect } from 'chai';
-import { ColeccionCartas } from '../src/cartas';
-import {Color, Tipo, Rareza, Cartas} from '../src/magic-app';
+import { ColeccionCartas } from '../src/cartas.js';
+import {Color, Tipo, Rareza, Cartas} from '../src/magic-app.js';
 
 describe ('Carta tests', () => {
     it ('crear carta', () => {
