@@ -242,17 +242,111 @@ Creo una clase donde declaro los distintos métodos a implementar:
 	}
   ```
 ### main
+Aqui en el main, es donde se implementa el paquete `yargs` para asi crear una interfaz de linea de comando, en donde la terminal se puede realizar diversas operaciones como añadir, mostrar, listar, eliminar y actualizar cartas en la colección:
+```ts
+let argv = yargs(hideBin(process.argv))
+  .command(
+    'add',
+    'Añade una carta a la colección',
+    {
+      usuario: {
+        describe: 'Nombre de usuario',
+        demandOption: true,
+        type: 'string'
+      },
+      id: {
+        describe: 'ID de la carta',
+        demandOption: true,
+        type: 'number'
+      },
+      nombre: {
+        describe: 'Nombre de la carta',
+        demandOption: true,
+        type: 'string'
+      },
+      coste_mana: {
+        description: 'Coste de maná',
+        type: 'number',
+        demandOption: true,
+      },
+      color: {
+        description: 'Color de la carta',
+        type: 'string',
+        choices: ['Blanco', 'Azul', 'Negro', 'Rojo', 'Verde', 'Incoloro', 'Multicolor'],
+        demandOption: true,
+      },
+      tipo: {
+        description: 'Tipo de la carta',
+        type: 'string',
+        choices: ['Tierra', 'Criatura', 'Encantamiento', 'Conjuro', 'Instantaneo', 'Artefacto', 'Planeswalker'],
+        demandOption: true,
+      },
+      rareza: {
+        description: 'Rareza de la carta',
+        type: 'string',
+        choices: ['Comun', 'Infrecuente', 'Rara', 'Mitica'],
+        demandOption: true,
+      },
+      texto_reglas: {
+        description: 'Texto de reglas de la carta',
+        type: 'string',
+        demandOption: true,
+      },
+      fuerza_resistencia: {
+        description: 'Fuerza/Resistencia de la carta (solo para criaturas)',
+        type: 'array',
+        coerce: (arg) => arg.map(Number),
+      },
+      marcas_lealtad: {
+        description: 'Marcas de lealtad de la carta (solo para planeswalkers)',
+        type: 'number',
+      },
+      valor_mercado: {
+        description: 'Valor de mercado de la carta',
+        type: 'number',
+        demandOption: true,
+      },
+    },
+    (argv) => {
+      if (argv.tipo === 'Criatura' && argv.fuerza_resistencia === undefined) {
+        throw new Error('Criatura necesito el atributo de fuerza/resistencia');
+      }
+      if (argv.tipo === 'Planeswalker' && argv.marcas_lealtad === undefined) {
+        throw new Error('Planeswalker necesita la marca de lealtad');
+      }
+      const cartas: Cartas = new Cartas(
+        argv.id,
+        argv.nombre,
+        argv.coste_mana,
+        argv.color as unknown as Color,
+        argv.tipo as unknown as Tipo,
+        argv.rareza as unknown as Rareza,
+        argv.texto_reglas,
+        argv.valor_mercado,
+        argv.fuerza_resistencia,
+        argv.marcas_lealtad,
+      );
+      coleccionar_cartas.AyadirCarta(cartas, argv.usuario);
+    },
+  )
+.help().argv;
+```
+Y habría que hacer esto con todos los demás métodos.
 
 ### Dificultades
 
-  Esta práctica ha sido complicada, porque me ha resultado difícil entender bien el funcionamiento de las interfaces y demás, aunque son muy parecidas a las clases en c++(que es lo que se ha llevado estudiando desde principios de carrera). El problema es que al tener muchas maneras de implementarlas y demás, pues me ha costado mucho entenderlo a la primera(me sigue costando). También hay que tener en cuenta que el primer ejercicio me ha costado mucho de entender(he tenido que mandarle un correo, haciendo que me quedará sin tiempo para poder realizarla correctamente), y por suerte el segundo era similar al que ya habiamos hecho anteriormente, y lo único que había que hacer era cambiarle la estructura y demás.
+  Esta práctica ha sido complicada, porque me ha resultado difícil entender bien el funcionamiento de los distintos paquetes y como usar los métodos proporcionados por el `API síncrona de Node.js`
 
 ### Bibliografía
+- [Yargs](https://www.npmjs.com/package/yargs)
+- [Chalk](https://www.npmjs.com/package/chalk)
+- [node.js](https://nodejs.org/docs/latest/api/fs.html)
+  
+Grado de Ingeniería Informática	
 
-  Grado de Ingeniería Informática
+Godgith John
 
-  Godgith John
+Desarrollo de Sistemas Informáticos	
 
-  Desarrollo de Sistemas Informáticos
-
-  Práctica 5 - Objetos, clases e interfaces
+Práctica 9 - Aplicación para coleccionistas de cartas Magic
+  
