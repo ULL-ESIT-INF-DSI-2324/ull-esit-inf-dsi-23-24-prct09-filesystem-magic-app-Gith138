@@ -1,4 +1,2 @@
 repo_token: vvWYFlYkRn2BfeVuBRirIo5z0EsyOmGZj
-              - name: Coveralls GitHub Action
-                uses: coverallsapp/github-action@v2.2.3
             
