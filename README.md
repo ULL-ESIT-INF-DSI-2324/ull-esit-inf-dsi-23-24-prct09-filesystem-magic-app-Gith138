@@ -333,6 +333,27 @@ let argv = yargs(hideBin(process.argv))
 ```
 Y habría que hacer esto con todos los demás métodos.
 
+### Modificación
+Es utilizar el patrón template para realizar varios métodos:
+```ts
+export abstract class TemplateMethodAlgorithm {
+    abstract filter(data: number[], predicate: (num: number) => boolean): number[]; // función que recibe un array de números y un predicado
+    abstract map(data: number[], mapper: (num: number) => number): number[]; // función que recibe un array de números y un mapeador
+    abstract reduce(data: number[]): number; // función que recibe un array de números y devuelve un número
+    
+    templateMethod(data: number[], predicate: (num: number) => boolean, mapper: (num: number) => number): number { // función que recibe un array de números, un predicado y un mapeador
+        const filteredData = this.filter(data, predicate); // Filtramos los datos
+        const mappedData = this.map(filteredData, mapper); // Mapeamos los datos filtrados
+        const result = this.reduce(mappedData); // Reducimos los datos mapeados
+        return result;
+    }
+}
+```
+ Crear una clase abstracta llamada TemplateMethodAlgorithm con los siguientes métodos abstractos:
+ - filter(data: number[], predicate: (num: number) => boolean): number[]: función que recibe un array de números y un predicado
+ - map(data: number[], mapper: (num: number) => number): number[]: función que recibe un array de números y un mapeador
+ - reduce(data: number[]): number: función que recibe un array de números y devuelve un número
+Ahora se implementa el algoritmo con diferentes operaciones de reducción, como puede ser la suma, la resta, la division y la multiplicación.
 ### Dificultades
 
   Esta práctica ha sido complicada, porque me ha resultado difícil entender bien el funcionamiento de los distintos paquetes y como usar los métodos proporcionados por el `API síncrona de Node.js`
